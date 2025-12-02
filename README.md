@@ -54,7 +54,7 @@ Para replicar este análisis en tu entorno local:
 1.  **Clonar el repositorio:**
 
     ```bash
-    git clone [https://github.com/sebamontedoro/Data-Science-II.git](https://github.com/TuUsuario/Data-Science-II.git)
+    git clone [https://github.com/sebamontedoro/Data-Science-II.git](https://github.com/sebamontedoro/Data-Science-II.git)
     ```
 
 2.  **Instalar dependencias:**
