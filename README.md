@@ -1,9 +1,10 @@
 # 📈 Análisis Integral de Riesgo y Retorno: Alpha Capital Investments
 
-**Curso:** Data Science II - CoderHouse 
-**Periodo de Análisis:** Último Año (12 Meses)
+**Curso:** Data Science II - CoderHouse  
+**Autor:** Victorio Montedoro  
+**Período:** Noviembre 2025 - Enero 2026
 
------
+---
 
 ## 📋 Descripción del Proyecto
 
@@ -11,67 +12,197 @@ Este proyecto simula un encargo de consultoría para el fondo de inversión fict
 
 El objetivo principal es resolver el dilema de los inversores conservadores: **¿Cómo capturar el crecimiento explosivo del sector tecnológico sin exponer el patrimonio a riesgos inaceptables?**
 
-Utilizando datos históricos de **Yahoo Finance**, analizamos el comportamiento de gigantes tecnológicos (**NVIDIA, Apple, Microsoft**) frente a activos de refugio (**Coca-Cola, Walmart**) para diseñar una estrategia de diversificación matemáticamente eficiente en el corto plazo.
+El proyecto se desarrolló en dos fases:
+
+| Fase | Descripción | Enfoque |
+|:-----|:------------|:--------|
+| **Primer Entregable** | Análisis Exploratorio de Datos (EDA) | Análisis descriptivo, correlaciones, drawdowns |
+| **Entrega Final** | Machine Learning Predictivo | Clasificación de regímenes Bull/Bear |
+
+---
 
 ## 🎯 Objetivos
 
-1.  **Validación de Hipótesis:** Determinar si la volatilidad del sector tecnológico justifica sus retornos a corto plazo.
-2.  **Análisis de Resiliencia:** Cuantificar el "dolor" del inversor mediante el cálculo de *Maximum Drawdown* (caída máxima).
-3.  **Estrategia de Inversión:** Encontrar la correlación óptima entre activos para proponer un portafolio "Barbell".
+### Primer Entregable (EDA)
+1. **Validación de Hipótesis:** Determinar si la volatilidad del sector tecnológico justifica sus retornos
+2. **Análisis de Resiliencia:** Cuantificar el "dolor" del inversor mediante *Maximum Drawdown*
+3. **Estrategia de Diversificación:** Encontrar correlaciones óptimas para un portafolio "Barbell"
 
-## 📊 Hallazgos Clave (Insights)
+### Entrega Final (Machine Learning)
+1. **Predicción de Regímenes:** Clasificar si el mercado estará en fase Bull (alcista) o Bear (bajista)
+2. **Ingeniería de Features:** Crear indicadores técnicos predictivos (RSI, MACD, Bollinger, etc.)
+3. **Optimización de Modelos:** Encontrar el mejor modelo mediante GridSearch y validación cruzada temporal
+
+---
+
+## 📊 Dataset
+
+| Aspecto | Primer Entregable | Entrega Final |
+|:--------|:------------------|:--------------|
+| **Período** | 5 años | **15 años** |
+| **Activos Alto Riesgo** | NVDA, AAPL, MSFT | + TSLA, AMD |
+| **Activos Defensivos** | KO, WMT | + PG, JNJ |
+| **Total Activos** | 6 | **10** |
+| **Fuente** | Yahoo Finance API | Yahoo Finance API |
+
+### Activos Analizados
+
+**🔴 Alto Riesgo (Tecnología):**
+- NVDA (Nvidia)
+- TSLA (Tesla)
+- AMD (Advanced Micro Devices)
+- AAPL (Apple)
+- MSFT (Microsoft)
+
+**🟢 Bajo Riesgo (Defensivos):**
+- KO (Coca-Cola)
+- WMT (Walmart)
+- PG (Procter & Gamble)
+- JNJ (Johnson & Johnson)
+
+**📊 Benchmark:**
+- ^GSPC (S&P 500)
+
+---
+
+## 📊 Hallazgos Clave
+
+### Del Análisis Exploratorio (EDA)
 
 > *"La diversificación no se trata de comprar muchas acciones, sino de comprar acciones que no se muevan igual."*
 
-  * **Riesgo vs. Retorno:** NVIDIA ha mostrado un crecimiento exponencial, pero con una volatilidad muy superior al consumo masivo.
-  * **El Factor de Miedo (Drawdown):** Invertir en tecnología requiere estómago; se observaron caídas significativas en periodos de corrección, mientras que Coca-Cola actuó como amortiguador.
-  * **La Joya Oculta:** Se descubrió una **correlación cercana a cero** entre Coca-Cola y NVIDIA. Esto valida matemáticamente que combinarlas reduce el riesgo sistémico del portafolio.
+- **Riesgo vs. Retorno:** NVIDIA mostró crecimiento exponencial pero con volatilidad 3x superior al consumo defensivo
+- **El Factor de Miedo:** Drawdowns superiores al 60% en tecnología vs. menos del 15% en defensivos
+- **Correlación Cero:** Se descubrió correlación cercana a cero entre NVDA y KO, validando la estrategia Barbell
+
+### Del Modelo de Machine Learning
+
+- **Problema:** Clasificación binaria (Bull vs Bear) con horizonte de 1 semana
+- **Features Más Predictivas:** Momentum (retornos recientes), volatilidad, RSI, spreads entre grupos de riesgo
+- **Modelos Evaluados:** Logistic Regression, Random Forest, XGBoost
+- **Validación:** TimeSeriesSplit (5 folds) para respetar el orden temporal
+
+---
 
 ## 🗂 Estructura del Repositorio
 
-Este repositorio contiene todos los entregables del proyecto:
+```
+📁 Data-Science-II---CoderHouse/
+│
+├── 📄 README.md                          # Este archivo
+├── 📄 requirements.txt                   # Dependencias del proyecto
+│
+├── 📁 Primer_Entregable/
+│   ├── 📓 Victorio_Montedoro_..._Primer_Entregable.ipynb
+│   ├── 📄 Reporte_Ejecutivo_AlphaCapital.pdf
+│   └── 💾 datos_precios.csv              # 5 años, 6 activos
+│
+└── 📁 Entrega_Final/
+    ├── 📓 Victorio_Montedoro_..._Entrega_Final.ipynb
+    ├── 🤖 mejor_modelo_regimen.pkl       # Modelo entrenado
+    └── 🔧 scaler.pkl                     # Scaler para normalización
+```
 
-| Archivo | Tipo | Descripción |
-| :--- | :--- | :--- |
-| `Victorio Montedoro - Ciencia de datos II - Primer Entregable.ipynb` | 📓 **Notebook** | El núcleo del proyecto. Contiene la extracción de datos (API), limpieza, EDA, cálculos financieros y conclusiones. |
-| `Reporte_Ejecutivo_AlphaCapital.pdf` | 📄 **Informe** | Documento formal para la gerencia. Resume los hallazgos sin código, enfocado en la toma de decisiones. |
-| `datos_precios.csv` | 💾 **Data** | Dataset procesado con 1 año de historia de precios ajustados. |
+### Descripción de Archivos
+
+| Archivo | Descripción |
+|:--------|:------------|
+| `Primer_Entregable/*.ipynb` | Notebook con EDA, visualizaciones y análisis de correlación |
+| `Primer_Entregable/*.pdf` | Reporte ejecutivo para gerencia (sin código) |
+| `Primer_Entregable/*.csv` | Dataset procesado del primer análisis |
+| `Entrega_Final/*.ipynb` | Notebook con pipeline completo de ML |
+| `Entrega_Final/*.pkl` | Modelo y scaler guardados para predicciones futuras |
+
+---
 
 ## 🛠 Tecnologías Utilizadas
 
-El proyecto fue desarrollado íntegramente en **Python** utilizando las siguientes librerías:
+### Lenguaje
+- **Python 3.10+**
 
-  * **Extracción de Datos:** `yfinance` (Yahoo Finance API)
-  * **Manipulación de Datos:** `pandas`, `numpy`
-  * **Visualización:** `matplotlib`, `seaborn`
-  * **Estadística:** `scipy.stats`
-  * **Generación de Reportes:** `reportlab` (PDF), `python-pptx` (PowerPoint)
+### Librerías
+
+| Categoría | Librerías |
+|:----------|:----------|
+| **Datos** | `pandas`, `numpy`, `yfinance` |
+| **Visualización** | `matplotlib`, `seaborn` |
+| **Machine Learning** | `scikit-learn`, `xgboost` |
+| **Interpretabilidad** | `shap` |
+| **Estadística** | `scipy.stats` |
+
+---
 
 ## 🚀 Instalación y Uso
 
-Para replicar este análisis en tu entorno local:
+### 1. Clonar el repositorio
 
-1.  **Clonar el repositorio:**
+```bash
+git clone https://github.com/sebamontedoro/Data-Science-II---CoderHouse.git
+cd Data-Science-II---CoderHouse
+```
 
-    ```bash
-    git clone [https://github.com/sebamontedoro/Data-Science-II.git](https://github.com/sebamontedoro/Data-Science-II.git)
-    ```
+### 2. Instalar dependencias
 
-2.  **Instalar dependencias:**
+```bash
+pip install -r requirements.txt
+```
 
-    ```bash
-    pip install pandas yfinance matplotlib seaborn scipy reportlab python-pptx
-    ```
+### 3. Ejecutar los Notebooks
 
-3.  **Ejecutar el Notebook:**
-    Abre `Entrega_Final_DS.ipynb` en Jupyter Notebook, Google Colab o VS Code y ejecuta las celdas secuencialmente.
+**Opción A: Google Colab (Recomendado)**
+- Subir los notebooks a Colab
+- Ejecutar las celdas secuencialmente
 
------
+**Opción B: Jupyter Notebook Local**
+```bash
+jupyter notebook
+```
 
-### 👤 Autor
+**Opción C: VS Code**
+- Abrir la carpeta del proyecto
+- Instalar extensión de Jupyter
+- Ejecutar los notebooks
+
+---
+
+## 📈 Resultados del Modelo
+
+| Modelo | AUC-ROC | Accuracy | F1-Score |
+|:-------|:--------|:---------|:---------|
+| Logistic Regression | - | - | - |
+| Random Forest (Optimizado) | - | - | - |
+| XGBoost (Optimizado) | - | - | - |
+
+> **Nota:** Los valores específicos se generan al ejecutar el notebook con datos actualizados.
+
+---
+
+## 🔮 Próximos Pasos
+
+1. **Ensemble de Modelos:** Combinar predicciones para mayor robustez
+2. **Backtest Financiero:** Simular estrategia de trading real
+3. **Features de Sentiment:** Incorporar análisis de noticias y redes sociales
+4. **Deep Learning:** Explorar LSTM para dependencias temporales complejas
+
+---
+
+## 📚 Referencias
+
+- [Yahoo Finance API (yfinance)](https://pypi.org/project/yfinance/)
+- [Scikit-learn Documentation](https://scikit-learn.org/)
+- [XGBoost Documentation](https://xgboost.readthedocs.io/)
+- [SHAP Values Explained](https://shap.readthedocs.io/)
+
+---
+
+## 👤 Autor
 
 **Victorio Montedoro**
 
------
+---
 
-*Este proyecto fue realizado con fines académicos como parte de la cursada de Data Science II de CoderHouser, durante Noviembre de 2025.*
+## 📄 Licencia
+
+Este proyecto fue realizado con fines académicos como parte del curso **Data Science II de CoderHouse**.
+
+*Noviembre 2025 - Enero 2026*
